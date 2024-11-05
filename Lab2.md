@@ -1,5 +1,6 @@
-#4451050894_NguyenDinhLuu
-#Lab2
+**#4451050894_NguyenDinhLuu
+#Lab2**
+**I. Tiến hành phân tích tất cả các ca sử dụng còn lại trong hệ thống Payroll System:**
 1. Phân tích ca sử dụng Create Administrative Report:
   a. Xác định các lớp phân tích:
     - Payroll Administrator: Đại diện cho người dùng chính của hệ thống trong Use Case này.
@@ -114,6 +115,150 @@
           + AuthenticationService so sánh thông tin đăng nhập với dữ liệu trong cơ sở dữ liệu.
   e. Biểu đồ mô tả lớp phân tích:
       ![ClassDiagram](https://planttext.com/api/plantuml/png/Z54nRiCm3Dpr2euk47_0A88axTXCHXx0MeGZG9PSaNA6eY_hq2Vb2v4I6wxX3jKYYJeUxqxNxvyT2mQ9dLMDHMOuCGNuL91M2J5T77O45TGIZ6l7Uf-G5n_qiWv0JYYy1DBfOD1oyPGGWpTQVQcH_ystnXtHOVjhZit5Mb0YfuQ3zvRGZPm3MgDHwDvOh1HjrcBMG_THpbbIWsAygoaCfg65orSKV4VEl4VidoVknxuTfU1CG_zMChb9OkxPbkLs6KBrY8sXcODJ2qHk-Tj21O4-8h7mb5DwL3joEl_e3G00__y30000)
-4. Phân tích ca sử dụng Maintain Employee Information: 
+4. Phân tích ca sử dụng Maintain Employee Information:
+  a. Xác định các lớp phân tích:
+    - PayrollAdministrator: Đại diện cho quản trị viên tiền lương, người thực hiện các thao tác duy trì thông tin nhân viên.
+    - Employee: Đại diện cho một nhân viên trong hệ thống.
+    - EmployeeManager: Quản lý các thao tác thêm, cập nhật, và xóa thông tin nhân viên trong hệ thống.
+    - PayrollSystem: Hệ thống tính lương, nơi các thay đổi về thông tin nhân viên sẽ được thực hiện.
+  b. Mô tả hành vi thông qua biểu đồ tuần tự (sequence diagram):
+    - Dưới đây là biểu đồ sequence cho ca sử dụng Maintain Employee Information.
+      ![Add an Employee](https://planttext.com/api/plantuml/png/UhzxVq1YPL5-JevZIcvcNcPnIL5YINwHWgwTWcjkGKv-PMggRs9UOdfgaPL2K6fXQMfnYO9ZIWfSaWjD5KWZDWCHkc4Q53ppqlABSXDBClFpk8XsGq1HVbbcIYfsKx2u1IPafU1Sb9fOWgGnA3KvloY55FUNb1Rb8LdimWK0003__mC0)
+      ![Update an Employee](https://planttext.com/api/plantuml/png/UhzxVq1YPL5-JevZIcvcNcPnIL5YINwHWgwTWcjkGKv-PMggRs9UOdfgaPL2K6fXQMfnYK9eGKfYIIfSdWjD8KWlDZCH1i0qA7YwS15jUq1HVbbcIYgAPYmsmuH0jfKKPQQM8Ul8IyiloaqioSpF8zvUDD-Y68BNVgZ6eDJa_A8KBW00003__mC0)
+      ![Delete an Employee](https://planttext.com/api/plantuml/png/d8zH3i5048RVznHp0HVm896Mn8D4z0IJziV6x2xJ9UdPF3YIAr0K5QInZpFxpVV_fyDnnfK6aM7XhBTbL8v1gJUWaTj8g80fUrv2-pJ7TeSoKWf1n6DltZxMxAURpmCDG9FKTBRFDEnjWHRymToCQbjKY_qhuHT17KSRVFVGIV0Bg-xMkYPPOdi8GvVNkSYTlK8_2qnPrtH9_5H_GUxgh2eZN9-oV8LY9w2nzIpDra1AKC8-X_oNkuN25-OC003__mC0)
+  c. Nhiệm vụ của từng lớp phân tích:
+    - PayrollAdministrator:
+          + Cung cấp yêu cầu để thêm, cập nhật hoặc xóa thông tin nhân viên.  
+    - Employee:
+          + Quản lý thông tin của nhân viên.
+          + Cập nhật các thông tin khi được yêu cầu.
+    - EmployeeManager:
+          + Thêm nhân viên mới vào hệ thống và tạo ID duy nhất cho nhân viên.
+          + Cập nhật thông tin nhân viên dựa trên ID.
+          + Xóa nhân viên khỏi hệ thống sau khi nhận xác nhận.
+    - PayrollSystem:
+          + Quản lý quá trình thanh toán lương và cập nhật các thay đổi nhân sự.
+          + Tạo bảng lương cuối cùng cho nhân viên bị xóa.
+  d. Một số thuộc tính và quan hệ giữa các lớp phân tích:
+    - Các thuộc tính:
+          + PayrollAdministrator:
+                adminId: ID của quản trị viên
+                name: Tên của quản trị viên
+          + Employee:
+                employeeId: ID của nhân viên
+                name: Tên nhân viên
+                type: Loại nhân viên (theo giờ, hưởng lương cố định, hưởng hoa hồng)
+                mailingAddress: Địa chỉ thư từ
+                socialSecurityNumber: Số an sinh xã hội
+                standardTaxDeductions: Khấu trừ thuế tiêu chuẩn
+                otherDeductions: Khấu trừ khác (401k, y tế)
+                phoneNumber: Số điện thoại
+                hourlyRate: Mức lương theo giờ (cho nhân viên theo giờ)
+                salary: Lương (cho nhân viên hưởng lương và hoa hồng)
+                commissionRate: Tỷ lệ hoa hồng (cho nhân viên hoa hồng)
+                hourLimit: Giới hạn giờ làm việc
+          + EmployeeManager:
+                employeeRecords: Danh sách các hồ sơ nhân viên
+    - Quan hệ giữa các lớp phân tích:
+          + PayrollAdministrator tương tác với EmployeeManager để thực hiện các thao tác thêm, cập nhật hoặc xóa nhân viên.
+          + EmployeeManager quản lý các Employee và có trách nhiệm lưu giữ thông tin nhân viên, đồng thời thực hiện thêm, cập nhật hoặc xóa.
+          + Employee chứa tất cả các thông tin của nhân viên.
+          + PayrollSystem cập nhật thông tin nhân sự và tạo bảng lương cuối cùng khi cần.
+  e. Biểu đồ mô tả lớp phân tích:
+      ![ClassDiagram](https://planttext.com/api/plantuml/png/Z5DPJiCm4FtFAVpPIkG25QfQgLH2AWYrS8317bfBNi9uWeWG9-E38t45dEBGR2pvovltPdt-U7jV10RYqffC6WX1t415tfYbijhfm0JiIRna8dwvW1gzL68cTapQxHFim68N4uBmiSJ0IwKkR65yXJYPHiwJrwhBk2iKCFv1Mg71CT9hbjfkGj-jOWB-qsqkk2e6c0Ljub-SW31Mw4M3bnhC3cL9cglhqjuZ3JWCJW6fMtXUeIebQ-_gH6lZWHF7ym7fnsXny0x7anzyIQRQnjtrD04CKDK3fRTMXn1BZ2ZgL1jjDNTm8ShZQIxTWoSBTNk_BFuA7EoH1llVelIawhasqKxd3NsUIa3B7ura1GpJlf_AharEvprB8TN8MkvHNTkSHCCvakztLM2qQGeXWZp4qnXSQmScKIOZrchd6tr1UJuVh6hMk3lKNdEC3fp4h4zhIwF67k4mIkiECKkR2QBumhC5EbK_zKy0003__mC0)
 5. Phân tích ca sử dụng Maintain Purchase Order:
+  a. Xác định các lớp phân tích:
+    - CommissionedEmployee: Đại diện cho nhân viên hoa hồng, người thực hiện các thao tác duy trì đơn đặt hàng để nhận hoa hồng.
+    - PurchaseOrder: Đại diện cho đơn đặt hàng của một khách hàng được ghi lại bởi nhân viên hoa hồng.
+    - PurchaseOrderManager: Quản lý các thao tác thêm, cập nhật, và xóa đơn đặt hàng trong hệ thống.
+    - System: Đại diện cho hệ thống chính xử lý xác thực và điều hướng các thao tác.
+  b. Mô tả hành vi thông qua biểu đồ tuần tự (sequence diagram):
+    - Dưới đây là các biểu đồ sequence cho từng thao tác chính trong ca sử dụng Maintain Purchase Order.
+      ![Create a Purchase Order](https://planttext.com/api/plantuml/png/UhzxltD-RcvcSN5cVbvgYcjkGKv-PMggWgwTGa1fKN96Od6gVr5AQf5lObvYUcgHbK9GQc5fQd69WdDHQc99AboH0bWL5pOz8BEmsO4m2zKG1S-yjFoYtCGIe6ekqXmNK9HVbfc2xYeK0t6v44NS2hltW0vEpYzA8TcN9QL5UHXkSk420000__y30000)
+      ![Update a Purchase Order](https://planttext.com/api/plantuml/png/b95DRi9038NtSmfVe1TWKQa2L6M1GA2ojsBJZZG_gJs9bBDrqIDn1IP0Iq09KcRfyVly_7py-Pr7xwsgZO5fwIiNMsPuUOLDBUKNAg-5M5OOy9Db1bl-hbaJV5I4YV-RuDnbXZGTQsZ6ZNKFWM9XfddQI6miFPhfE6D-TgqczZFOizX32szboQg0WM2NCDLgq2NOexFK_xjWhSAwuc0WlmjdtDbL_2uO4jDPCcRfhjvbayHoynViC-Lmk0khbSFsyK8TQ5gwWvU68XoYU4mPCcMjAspBPHGox3Al24q_w2WmTr6PUePlCJ_VTIcIvQkCoUCD1p8d0000__y30000)
+      ![Delete a Purchase Order](https://planttext.com/api/plantuml/png/f99DJiCm48NtFiLSW0jqWOII2dLHjQ9IzrOy1Kl-2JDEf9oD1KVY2jXEQPEIL4HuwPdtpVCRVtry5jvQpQozGxMsjV4T8ZmymhwXwaqoxaWXRQMJhqWhUC7t1Zb0YGO3NfeWTuafJM9DpRYonX3Ob6APfptvLgjRCuapv-VGSK2xWYEIFdNmL5N83D8fE0GP6XRI13XAezMmrcCrmwv69o2UdZFlx2n-9ka2gYoPipIwJza4qjZ-17jFEHrkgRasihlTq79GuTr9a-qt7ciPaV8P5J1VfxDiTsV8HVtdUAmVXOCcFh6GhaBpJqE_6EYKoFYDQuTVmXCKnZEgWOthXxY_bJLHb6yZ9auLQS8t0000__y30000)
+  c. Nhiệm vụ của từng lớp phân tích:
+    - CommissionedEmployee:
+          + Cung cấp yêu cầu để tạo, cập nhật hoặc xóa đơn đặt hàng.
+    - PurchaseOrder:
+          + Quản lý thông tin của đơn đặt hàng.
+          + Cập nhật thông tin đơn hàng khi được yêu cầu.
+    - PurchaseOrderManager:
+          + Thêm đơn đặt hàng mới vào hệ thống và tạo ID duy nhất cho đơn hàng.
+          + Cập nhật thông tin đơn đặt hàng dựa trên ID.
+          + Xóa đơn đặt hàng khỏi hệ thống sau khi nhận xác nhận.
+    - System:
+          + Xác thực quyền truy cập của Commissioned Employee vào đơn đặt hàng.
+  d. Một số thuộc tính và quan hệ giữa các lớp phân tích:
+    - Các thuộc tính:
+          + CommissionedEmployee:
+               employeeId: ID của nhân viên
+               name: Tên của nhân viên
+          + PurchaseOrder:
+                orderId: ID của đơn đặt hàng
+                customerContact: Thông tin liên hệ khách hàng
+                billingAddress: Địa chỉ thanh toán của khách hàng
+                products: Danh sách sản phẩm được mua
+                date: Ngày đặt hàng
+                status: Trạng thái của đơn đặt hàng (mở/đóng)
+          + PurchaseOrderManager:
+                purchaseOrders: Danh sách các đơn đặt hàng
+          + System:
+    - Quan hệ giữa các lớp:
+          + CommissionedEmployee tương tác với PurchaseOrderManager để thực hiện các thao tác tạo, cập nhật hoặc xóa đơn đặt hàng.
+          + PurchaseOrderManager quản lý các PurchaseOrder và chịu trách nhiệm duy trì các thông tin liên quan đến đơn đặt hàng.
+          + System xác thực quyền truy cập của CommissionedEmployee vào đơn đặt hàng và đảm bảo rằng chỉ những đơn hàng thuộc về họ và đang mở mới được sửa hoặc xóa.
+  e. Biểu đồ mô tả lớp phân tích:
+    - Dưới đây là biểu đồ lớp của ca sử dụng Maintain Purchase Order.
+      ![ClassDiagram](https://planttext.com/api/plantuml/png/X5DBQiCm4Dtx55esq5mWb93WT65eQI7q01DfaWhqSJMZW2azMHSzKgzGsL4I9tQ9DqBptepUUv9_ltyMn10uMbD80qIYzDPg8kqTgaTR6zyWYiz2f6ygC1Sg9MPYpK6xNKOSMBoi2H7m8o9n6H0ONuB2S3T9dBtNwfBnLgiRZ1KQ732-YgpvDGRv3dJ0Js9zknigbP7OMmobTmoIh-6DDYRjbae5JAElq3fu5IMtzITD_700vnbjNIHabPPSIU5ofEjWOkUtSbiVB72A-fQdPt2mwrch--19p4NBF9ybU-btYIHrC1bNr6DLwZuNrR6XTokgTnsPFdImReZHPir2x37eRREKCiLwFkFyeje16-yDWcjdZBx3wNG-7ipi-518MD2EqO6JM8no1qDIj-qm-hyXcvaTR6Wa0PsJOe5EjN_F7m000F__0m00)
 6. Phân tích ca sử dụng Run Payroll:
+  a. Xác định các lớp phân tích:
+    - PayrollSystem: Đại diện cho hệ thống xử lý tiền lương, bao gồm các bước chạy bảng lương vào các ngày định kỳ.
+    - Employee: Đại diện cho thông tin của nhân viên, bao gồm dữ liệu cần thiết để tính lương.
+    - Timecard: Lưu thông tin về thời gian làm việc của nhân viên hưởng lương theo giờ.
+    - PurchaseOrder: Lưu trữ các đơn hàng cho nhân viên hưởng hoa hồng để tính phần hoa hồng.
+    - BankSystem: Đại diện cho hệ thống ngân hàng xử lý các giao dịch thanh toán.
+  b. Mô tả hành vi thông qua biểu đồ tuần tự (sequence diagram):
+    - Dưới đây là các biểu đồ sequence mô tả hành vi của hệ thống trong quá trình Run Payroll.
+        ![SequenceDiagram](https://planttext.com/api/plantuml/png/V9F1Ri8m38RlF8MFss4lm64IKAHTq2fWsjbBZHerJP2JeFNPTjWZxHMMP6iej91B8yV-Vlzn-lFrNMB7HgbTPnsryFGCw_QeJ4SqXoqvbdIY78827SvGkNDa_IcjipC8AyS2v88wXvBDILRKX_yuiMQalfSj2UHgeDw7u44Ue3QULGVqh_MOA3bZh1medZNiZKC5Bw7OmhlXXgff-TApgD7IArV4WnxwEAG3creHfcsbjT9egguQki3SxcgL2R1eZTTkkgdpH5QeX5Veqascv3YCi6z9EzYGgqq5qi86fGB3K4hH-6DAdBRBKhjeD6tYkQX9DAc0bAK9T26PX8E2ZiPATnkzHDtqTdUagwj2s3DgYy85ynaIpPphejhY59pWXwAS4zSWPtot0p3il11axS6hN9zi3G1l6YSrxXgAxwA3CB1mpUCMWzjP_qro-S_OO7nwS0YZAKXHDdzdv2blWDYIC1ouWVqB003__mC0)
+  c. Nhiệm vụ của từng lớp phân tích:
+    - PayrollSystem:
+          + Khởi động quy trình chạy bảng lương vào các ngày được chỉ định.
+          + Kiểm tra tình trạng của hệ thống ngân hàng để gửi giao dịch.
+    - Employee:
+          + Lưu trữ thông tin cá nhân và thông tin cần thiết cho tính lương.
+          + Chuyển các yêu cầu về thanh toán đến lớp thích hợp.
+    - Timecard:
+          + Ghi lại thời gian làm việc và tính tổng giờ cho nhân viên làm việc theo giờ.
+    - PurchaseOrder:
+          + Xử lý và lưu thông tin về đơn đặt hàng của nhân viên hoa hồng.
+    - BankSystem:
+          + Nhận yêu cầu giao dịch từ hệ thống bảng lương và xử lý các thanh toán trực tiếp qua tài khoản ngân hàng.
+  d. Một số thuộc tính và quan hệ giữa các lớp:
+    - Các thuộc tính:
+          + PayrollSystem:
+                payrollDate: Ngày chạy bảng lương hiện tại
+          + Employee:
+                employeeId: ID của nhân viên
+                name: Tên của nhân viên
+                salary: Lương cơ bản (cho nhân viên hưởng lương tháng)
+                benefits: Các khoản phụ cấp và quyền lợi
+                deductions: Các khoản khấu trừ
+                payMethod: Phương thức thanh toán (gửi ngân hàng, thư, nhận trực tiếp)
+          + Timecard:
+                employeeId: ID của nhân viên
+                hoursWorked: Số giờ làm việc
+                date: Ngày làm việc
+          + PurchaseOrder:
+                orderId: ID của đơn hàng
+                employeeId: ID của nhân viên hoa hồng
+                commissionRate: Tỷ lệ hoa hồng  
+    - Quan hệ giữa các lớp:
+          + PayrollSystem là lớp quản lý toàn bộ quy trình xử lý bảng lương, tương tác với các lớp Employee, Timecard, PurchaseOrder và BankSystem.
+          + Employee lưu thông tin chi tiết về nhân viên cần thiết cho tính toán tiền lương và xác định phương thức thanh toán.
+          + Timecard và PurchaseOrder cung cấp dữ liệu bổ sung cho các nhân viên theo giờ và nhân viên hoa hồng.
+          + BankSystem xử lý các giao dịch khi có yêu cầu thanh toán trực tiếp.
+  e. Biểu đồ mô tả lớp phân tích:
+    - Dưới đây là biểu đồ lớp của ca sử dụng Run Payroll.
+      ![ClassDiagram](https://planttext.com/api/plantuml/png/Z5DBQiCm4Dtx55gw2ryWb13wWHPQ6Xf3rnDfcfZe4pHIm9IUh8iUgLUe5CkExIHWRspFcwTvypJpz_Ex80VMUIKpBe68BQ6sHifLJGuL-yfOU0gsRw8Fu93DM7mT0SQirucHtmJaO2gH40wIUnao0vwZsajJOoG_fi-OBenVo_OeGYrASmTwbpiBce2xokYG5KFbATBL-SwIvlR8JcvRxbc4t9MpbTuaH8F2SOn0Wgs7SWgsHesVbQCGVwd8tJQKUK852dzKSmKFXhsYsvgH0COsw9QTcJ0sJQ14X_bvYsMba8CL4rhS6c_fmzWTYd5Fukp-WfpIE91FaPHVEBHtJPsOfRTy2uHlLg3j59duToxdkb1kbAg8WedlZQx1E0Hbzrt2L6LnL0QZozZU6ev4lG6QFbx3PIYA-MdKPinYa847f7OxehrmWTFTNP_Zsk0Lqj3ZGRM4D8RJ1MxFXTbnhKAvKuEKBK8eRlm_0000__y30000)
+**II. Viết code Java mô phỏng ca sử dụng Maintain Timecard.**
