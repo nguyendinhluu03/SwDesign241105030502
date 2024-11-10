@@ -262,3 +262,113 @@
     - Dưới đây là biểu đồ lớp của ca sử dụng Run Payroll.
       ![ClassDiagram](https://planttext.com/api/plantuml/png/Z5DBQiCm4Dtx55gw2ryWb13wWHPQ6Xf3rnDfcfZe4pHIm9IUh8iUgLUe5CkExIHWRspFcwTvypJpz_Ex80VMUIKpBe68BQ6sHifLJGuL-yfOU0gsRw8Fu93DM7mT0SQirucHtmJaO2gH40wIUnao0vwZsajJOoG_fi-OBenVo_OeGYrASmTwbpiBce2xokYG5KFbATBL-SwIvlR8JcvRxbc4t9MpbTuaH8F2SOn0Wgs7SWgsHesVbQCGVwd8tJQKUK852dzKSmKFXhsYsvgH0COsw9QTcJ0sJQ14X_bvYsMba8CL4rhS6c_fmzWTYd5Fukp-WfpIE91FaPHVEBHtJPsOfRTy2uHlLg3j59duToxdkb1kbAg8WedlZQx1E0Hbzrt2L6LnL0QZozZU6ev4lG6QFbx3PIYA-MdKPinYa847f7OxehrmWTFTNP_Zsk0Lqj3ZGRM4D8RJ1MxFXTbnhKAvKuEKBK8eRlm_0000__y30000)
 **II. Viết code Java mô phỏng ca sử dụng Maintain Timecard.**
+- Dưới đây là chương trình java mô phỏng ca sử dụng Maintain Timecard:
+package Main;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+class Employee {
+    private int employeeId;
+    private String name;
+    private String email;
+    private List<Timecard> timecards = new ArrayList<>();
+
+    public Employee(int employeeId, String name, String email) {
+        this.employeeId = employeeId;
+        this.name = name;
+        this.email = email;
+    }
+
+    public void enterHours(Timecard timecard) {
+        timecards.add(timecard);
+    }
+
+    public void submitTimecard(TimecardManager manager) {
+        for (Timecard timecard : timecards) {
+            manager.createTimecard(timecard);
+        }
+    }
+}
+
+class Timecard {
+    private Date startDate;
+    private Date endDate;
+    int hoursWorked;
+
+    public Timecard(Date startDate, Date endDate, int hoursWorked) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.hoursWorked = hoursWorked;
+    }
+
+    public void updateHours(int hours) {
+        this.hoursWorked = hours;
+    }
+
+    public void save() {
+        System.out.println("Timecard saved!");
+    }
+}
+
+class Project {
+    private int projectId;
+    private String projectName;
+
+    public Project(int projectId, String projectName) {
+        this.projectId = projectId;
+        this.projectName = projectName;
+    }
+
+    public List<Project> getProjects() {
+        return new ArrayList<>(); 
+    }
+}
+
+class Validation {
+    private int maxHoursPerDay;
+    private int maxTotalHours;
+
+    public Validation(int maxHoursPerDay, int maxTotalHours) {
+        this.maxHoursPerDay = maxHoursPerDay;
+        this.maxTotalHours = maxTotalHours;
+    }
+
+    public boolean validateHours(int hours) {
+        return hours <= maxTotalHours;
+    }
+}
+
+class TimecardManager {
+    private List<Timecard> timecardList = new ArrayList<>();
+    private Validation validation = new Validation(8, 40);
+
+    public Timecard createTimecard(Timecard timecard) {
+        if (validateTimecard(timecard)) {
+            timecardList.add(timecard);
+            timecard.save();
+            return timecard;
+        } else {
+            System.out.println("Timecard không hợp lệ!");
+            return null;
+        }
+    }
+
+    public boolean validateTimecard(Timecard timecard) {
+        return validation.validateHours(timecard.hoursWorked);
+    }
+}
+
+public class MaintainTimecard {
+    public static void main(String[] args) {
+        Employee employee = new Employee(1, "DinhLuu", "dinhluu@gmail.com");
+        Project project = new Project(1, "Project Alpha");
+
+        Timecard timecard = new Timecard(new Date(), new Date(), 35);
+        employee.enterHours(timecard);
+
+        TimecardManager manager = new TimecardManager();
+        employee.submitTimecard(manager);
+    }
+}
+
