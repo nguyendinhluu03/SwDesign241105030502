@@ -65,6 +65,13 @@
 - Chức năng chính:
     + Đồng bộ thời gian trong các tác vụ (trả lương, nộp bảng chấm công).
     + Giảm sai lệnh thời gian giữa các thành phần.
+**8. Distribution Subsystem (Hệ thống phân phối):**
+- Mô tả: Cho phép các thành phần của hệ thống Payroll System giao tiếp và hoạt động trên môi trường phân tán.
+- Thành phần chính:
+      + IPayrollController: Giao diện điều khiển từ xa cho Payroll.
+      + Naming Service: Hỗ trợ tra cứu các đối tượng từ xa.
+- Chức năng chính: Hỗ trợ truy cập từ xa qua mạng.
+- Dữ liệu: Kết nối và xử lý dữ liệu phân tán.
 **Về kiến trúc tổng thể:**
 - Hệ thống được tổ chức theo mô hình phân tầng:
     + Application Layer (Tầng ứng dụng): Bao gồm các giao diện như LoginForm, TimecardForm.
