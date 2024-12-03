@@ -39,6 +39,7 @@
       Phương thức: getCurrentDateTime()
   + BankSystem (Subsystem):
       Phương thức: processPayment(employee, amount)
+  ![Diagram](https://planttext.com/api/plantuml/png/T591QiCm4Bph5NkB2_K7J0c1KEYXbD0KUXRorXMH9IF9WL3wafvwxQNt-f13Nk8Nz0kL52d4ZgkBbfdLx32htsw_C9PgszQ2p22F1nvR2Ikwqqg84qYOeCOaUAcazJTgU2FWZcvbfB86DLTbuLjNeRo20hQAbw6nGecQMdIi4RmncMVlkR4t4PcJTp8SjaQzvGpZ94O5QyLH8SEw4Mg7MC1jhAx1yXePrSx1KwpyY1UXg0q2ZLOCZV7F9wt-RyOZqKKQ_41hT6_MLdDP7UMJ5fpf1iOgIyMTQhLvLdg3vS1L85t_01o5bPsITAvci3nyCX3yy2LXq__iBLIyxxufi83ttKS3x5MTRvDShY_FvwESoIXstv7IdU9IobDSD4vIU16BeInGbkxh_G400F__0m00)
 **4. Bank Interaction Subsystem:**
 - Lớp chính:
   + IBankSystem (Interface):
@@ -48,6 +49,7 @@
       Hiện thực các phương thức tương tác với API ngân hàng
   + BankInformation (Entity):
       Thuộc tính: bankName, accountNumber, routingNumber
+   ![Diagram](https://planttext.com/api/plantuml/png/j5EnQkGm4Etz5TET36j2YgGGOSab9108uI1RNAlLQcsnihH8un0J3W8fKwM-vdBN7HntzRf8iI7_uVn0VY7AxjhnUdrbN1WnysRUUpFII_6mxv1Pp58LV8BJilW-XGEc9-UvGv4UAYaq0ZamcHuncuS1LyovJSHL0FuRYQbn4icKvJmHV4BXo-hKWw4lET5ZOrE6qcYwwD48XC6te4C1a4EZqHgbXDra_mZUWMNQCVwM0tAaKUAQxMPwoSwjO2Z8IiGWdmeAvsYbZdl0KZyvf31MXc4FhCdGny-oT2XiXGeNNLmsJBs5DJcLYxQEEhuK40lylE0X8QoesgOQXhjCDTFBdcjAePBQlQCJZSAE6HT0wcCOo3hQXRngciRtcTBsaAk1oFbl3PDoze0GoxBuou3FxpceDot1ndsCedxpcj3wYeGDR8rgxfHM-zn0rbEdiBUNET7lT_Lg6wNlcsrJ_QUa4rUH1_j2Z_nZVRw-tTwbspjRaVElGyTRKIByCwPzQcX428qI-EfLeNtwvoV4OP98YClYZnmavUmN74ib75pCVnXul9l_pFs_B6xWqfUeSdOlEmfV0G00__y30000)
 **5. Printing Subsystem:**
 - Lớp chính: 
   + IPrintService (Interface):
